@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-4 card p-3">
+        <h2 class="title">{{ title }}</h2>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {% include 'components/_form_errors.html' %}
+            {{ form.as_p }}
+
+            <button class="btn btn-dark mt-2">Зарегистрироваться</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock main %}

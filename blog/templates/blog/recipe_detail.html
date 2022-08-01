@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block main %}
+<nav class="nav d-flex justify-content-between">
+    <a href="{% url 'index' %}" class="p-2 link-{% if 'страница' in title %}dark{% else %}secondary{% endif %}"><strong>Все
+        рецепты</strong></a>
+
+</nav>
+
+<div class="d-flex justify-content-between" style="margin-bottom: 50px]">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div>
+                    <p style="font-weight:bold">{{ recipe.category }}</p>
+                </div>
+                <div>
+                    {% if request.user.is_authenticated %}
+                    {% get_favorite_recipes request.user as fav_recipes %}
+                        {% if recipe in fav_recipes %}
+                            <a class="btn btn-danger" href="{% url 'save_or_delete' recipe.pk %}">
+                                Удалить из избранного
+                            </a>
+                        {% else %}
+                            <a class="btn btn-danger" href="{% url 'save_or_delete' recipe.pk %}">
+                                Добавить в избранное
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'login' %}"></a>
+                    {% endif %}
+                </div>
+                <div>
+
+<!--                    <a class="btn btn-secondary" href="{% url 'recipe_delete' recipe.pk %}">Удалить</a>-->
+<!--                    <a class="btn btn-dark" href="{% url 'recipe_update' recipe.pk %}">Изменить</a>-->
+
+
+                    <a class="btn btn-primary" href="{% url 'index' %}">Назад</a>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <img src="" alt="">
+                <h3 class="card-title">{{ recipe.title }}</h3>
+                <p class="card-text">{{ recipe.content|linebreaks }}</p>
+            </div>
+
+            <div class="card-footer d-flex justify-content-between">
+                <div>
+                    {{ recipe.created_on }}
+                </div>
+                <div>
+                    Просмотры: {{ recipe.watches }}
+                </div>
+            </div>
+        </div>
+        <div class="reviews mt-5">
+            <h2>Отзывы</h2>
+        </div>
+        {% for comment in comments %}
+        <div class="card mt-3">
+            <div class="card-header d-flex justify-content-between">
+                <strong>{{ comment.username.username }}</strong>
+                <div class="time">
+                    <small>{{ comment.created_on }}</small>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ comment.content }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% if request.user.is_authenticated %}
+        {% include 'blog/components/_comment_form.html' %}
+        {% endif %}
+
+    </div>
+
+    <div class="col-4">
+
+    </div>
+
+</div>
+
+{% endblock %}

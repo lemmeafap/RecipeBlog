@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<main>
+    {% get_all_categories as categories %}
+    {% include 'blog/components/_sidebar.html' %}
+
+    <div class="p-4  p-mb-5 text-white bg-dark">
+        <h1 class="display-4 fst-italic">
+
+            <strong>{{ title }}</strong>
+        </h1>
+    </div>
+
+
+
+
+    <div class="row mt-4 mb-2">
+        {% for recipe in recipes %}
+        {% include 'blog/components/_card.html' %}
+        {% endfor %}
+    </div>
+    >
+
+
+</main>
+{% endblock main %}

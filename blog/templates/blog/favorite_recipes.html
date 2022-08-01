@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+<main>
+    <section class="category_recipes">
+            <div class="container">
+                <h3 class="section__title my-5">Избранные товары</h3>
+                <div class="row">
+                    {% for recipe in recipes %}
+                        {% include 'blog/components/_card.html' %}
+
+                    {% empty %}
+                    <p>У вас пока нет избранных товаров. Но это никогда не поздно исправить!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+</main>
+
+{% endblock main %}
