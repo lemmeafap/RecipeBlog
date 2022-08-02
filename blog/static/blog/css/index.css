@@ -1,0 +1,19 @@
+h1 {
+    color: khaki;
+}
+
+body {
+    background-color: AntiqueWhite;
+}
+
+.col-md-6 {
+    background-color: white;
+}
+
+.card-header {
+    background-color: SeaGreen;
+}
+
+.card-header-comment {
+    background-color: LightCyan;
+}

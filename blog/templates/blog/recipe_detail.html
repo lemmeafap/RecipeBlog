@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load blog_tags %}
-
+{% load static %}
 {% block title %}
 {{ title }}
 {% endblock %}
@@ -12,12 +12,13 @@
 
 </nav>
 
-<div class="d-flex justify-content-between" style="margin-bottom: 50px]">
+<div class="d-flex justify-content-between" style="margin-bottom: 50px">
+    <link rel="stylesheet" href="{% static 'blog/css/index.css' %}" class="rel">
     <div class="col-8">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div>
-                    <p style="font-weight:bold">{{ recipe.category }}</p>
+                    <font size="5" style="font-variant:inherit">{{ recipe.category }}</font>
                 </div>
                 <div>
                     {% if request.user.is_authenticated %}
@@ -36,10 +37,13 @@
                     {% endif %}
                 </div>
                 <div>
-
+<!--                    {% if request.user == recipe.username %}-->
 <!--                    <a class="btn btn-secondary" href="{% url 'recipe_delete' recipe.pk %}">Удалить</a>-->
 <!--                    <a class="btn btn-dark" href="{% url 'recipe_update' recipe.pk %}">Изменить</a>-->
-
+<!--                    {% else %}-->
+<!--                    <a class="btn btn-secondary" href="{% url 'recipe_delete' recipe.pk %}">Удалить</a>-->
+<!--                    <a class="btn btn-dark" href="{% url 'recipe_update' recipe.pk %}">Изменить</a>-->
+<!--                    {% endif %}-->
 
                     <a class="btn btn-primary" href="{% url 'index' %}">Назад</a>
                 </div>
@@ -48,7 +52,7 @@
             <div class="card-body">
                 <img src="" alt="">
                 <h3 class="card-title">{{ recipe.title }}</h3>
-                <p class="card-text">{{ recipe.content|linebreaks }}</p>
+                <p class="card-text" style="font-weight:bold">{{ recipe.content|linebreaks }}</p>
             </div>
 
             <div class="card-footer d-flex justify-content-between">
@@ -65,7 +69,7 @@
         </div>
         {% for comment in comments %}
         <div class="card mt-3">
-            <div class="card-header d-flex justify-content-between">
+            <div class="card-header-comment d-flex justify-content-between">
                 <strong>{{ comment.username.username }}</strong>
                 <div class="time">
                     <small>{{ comment.created_on }}</small>

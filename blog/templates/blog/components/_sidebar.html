@@ -1,8 +1,8 @@
 <nav class="nav d-flex justify-content-between">
-    <a href="{% url 'index' %}" class="p-2 link-{% if 'страница' in title %}dark{% else %}secondary{% endif %}"><strong>Все
-        рецепты</strong></a>
+    <a href="{% url 'index' %}" class="p-2 link-{% if 'страница' in title %}dark{% else %}secondary{% endif %}"><p style="font-size:24px">Все
+        рецепты</p></a>
     {% for category in categories %}
     <a href="{{ category.get_absolute_url }}"
-       class="p-2 link-{% if category.title in title %}dark{% else %}secondary{% endif %}"><i>{{ category }}</i></a>
+       class="p-2 link-{% if category.title in title %}dark{% else %}secondary{% endif %}"><p style="font-size:24px">{{ category }}</p></a>
     {% endfor %}
 </nav>

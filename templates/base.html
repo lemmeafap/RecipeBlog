@@ -1,6 +1,9 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -14,7 +17,9 @@
     </title>
 </head>
 <body>
-<div class="container">
+<link rel="stylesheet" href="{% static 'blog/css/index.css' %}" class="rel">
+<div class="container" style="">
+
     <header>
         {% include 'components/_navbar.html' %}
     </header>
